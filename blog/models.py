@@ -17,3 +17,7 @@ class Article(models.Model):
     created = models.DateTimeField(auto_now_add = True) #برای زمانی که مقاله کی ایجاد شده چه منتشر شود چه نشود
     updated = models.DateTimeField(auto_now = True) #این برای زمانی هستش که نمایش می دهد کی ملاقه عوض شده
     status = models.CharField(max_length=1,choices=STATUS_CHOICES)
+    
+    #اگر بخوایم یه کلاس بهمون برگرده
+    def __str__(self):
+        return self.title
