@@ -54,6 +54,7 @@ class ArticleAdmin(admin.ModelAdmin):
     ]
     
     def category_to_str(self, obj):
-        return 'Categories'
-        
+        return ", ".join([category.title for category in obj.category.all()])
+    category_to_str.short_description = 'دسته بندی'   
+             
 admin.site.register(Article,ArticleAdmin)
