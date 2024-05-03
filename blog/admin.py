@@ -6,7 +6,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = (
         'title',
         'slug',
-        'publish',
+        'jpublish',
         'status',
         
     )
