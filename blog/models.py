@@ -40,6 +40,7 @@ class Article(models.Model):
     class Meta:
         verbose_name = 'مقاله'
         verbose_name_plural = 'مقالات'
+        ordering = ['-publish']
     
     #اگر بخوایم یه کلاس بهمون برگرده
     def __str__(self):
