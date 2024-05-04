@@ -16,3 +16,11 @@ def detail (request, slug):
 
     }
     return render(request,"blog/detail.html", context)
+
+def category(request, slug):
+    context = {
+        "category" : get_object_or_404(Category, slug=slug ,status=True),
+
+    }
+    
+    return render(request,"blog/category.html", context)
