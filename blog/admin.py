@@ -51,6 +51,7 @@ admin.site.register(Category,CategoryAdmin)
 class ArticleAdmin(admin.ModelAdmin):
 	list_display = (
 		'title',
+		'thumbnail_tag',
 		'slug',
 		'jpublish',
 		'status',
