@@ -24,7 +24,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <h3 class="alert alert-primary text-center">دسته بندی: {{category.title}}</h3>
                 <!-- Post preview-->
-                {% for article in articles  %}
+                {% for article in object_list  %}
                     <div class="post-preview">
                         <a href="{% url 'blog:detail' article.slug %}">
                             <h2 class="post-title">{{article.title}}</h2>
@@ -47,14 +47,17 @@
 
 
                     <!-- Pager-->
-                    {% if articles.has_previous %}
-                        <div class="d-flex justify-content-end mb-4" pager-button><a class="btn btn-primary text-uppercase ml-3 href" href="{% url 'blog:category' category.slug articles.previous_page_number %}">پست های جدید &rArr;</a></div>
+                    {% if is_paginated %}
+                        {% if page_obj.has_previous %}
+                            <div class="d-flex justify-content-end mb-4" pager-button><a class="btn btn-primary text-uppercase ml-3 href" href="{% url 'blog:category' category.slug page_obj.previous_page_number %}">پست های جدید &rArr;</a></div>
 
-                    {% endif %}
+                        {% endif %}
 
-                    {% if articles.has_next %}
+                        {% if page_obj.has_next %}
 
-                        <div class="d-flex justify-content-end mb-4" pager-button><a class="btn btn-primary text-uppercase" href="{% url 'blog:category' category.slug articles.next_page_number %}">پست های قدیمی &lArr;</a></div>
+                            <div class="d-flex justify-content-end mb-4" pager-button><a class="btn btn-primary text-uppercase" href="{% url 'blog:category' category.slug page_obj.next_page_number %}">پست های قدیمی &lArr;</a></div>
+
+                        {% endif %}
 
                     {% endif %}
                 </div>
