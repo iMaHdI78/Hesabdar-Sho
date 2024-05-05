@@ -32,12 +32,3 @@ header.masthead .site-heading h1{
     font-size: 40px;
 }
 
-.post-preview > a > .post-title {
-    font-size: 0.075rem;
-    margin-top: 1.875rem;
-    margin-bottom: 0.625rem;
-  }
-  .post-preview > a > .post-subtitle {
-    font-weight: 100;
-    margin-bottom: 0.625rem;
-  }

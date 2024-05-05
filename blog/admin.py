@@ -7,6 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
         'position',
         'title',
         'slug',
+        'parent',
         'status',
         
     )
