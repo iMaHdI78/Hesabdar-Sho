@@ -1,6 +1,9 @@
 from django.contrib import admin
 from .models import Article, Category
 
+#admin header change
+admin.site.site_header = 'پنل مدیریتی حسابداشو'
+
 # Register your models here.
 def make_published(modeladmin, request, queryset):
 		rows_updated = queryset.update(status='p')
