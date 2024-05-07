@@ -1,66 +1,20 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/list.html' %}
 
-{% load static %}
+{% block header %}
 
-{% block main %}
+    <h3 class="alert alert-primary text-center">دسته بندی: {{category.title}}</h3>
 
-<!-- Page Header-->
-    <header class="masthead" style="background-image: url('{% static 'blog/assets/img/home-bg.jpg' %}')">
-        <div class="container position-relative px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-                    <div class="site-heading">
-                        <h1>حسابدار شو</h1>
-                       <!--<span class="subheading">A Blog Theme by Start Bootstrap</span>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+{% endblock %}
 
-<!-- Main Content-->
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <h3 class="alert alert-primary text-center">دسته بندی: {{category.title}}</h3>
-                <!-- Post preview-->
-                {% for article in object_list  %}
-                    <div class="post-preview">
-                        <a href="{% url 'blog:detail' article.slug %}">
-                            <h2 class="post-title">{{article.title}}</h2>
-                            <h3 class="post-subtitle">{{article.description|truncatewords:30}}</h3>
-                        </a>
-                    <p class="post-meta">
-                            نوشته شده توسط
-                            <a href="#!">علائی تبار</a>
-                            {{article.jpublish}}
-                        </p>
-                        <div>
-                            {% for cat in article.category_published.all %}
-                              <a href="#">#{{cat.title}}</a>
+{% block previous_page_url %}
 
-                            {% endfor %}
-                        </div>
-                    </div>
-                {% endfor %}
+    {% url 'blog:category' category.slug page_obj.previous_page_number %}
+
+{% endblock %}
 
 
+{% block next_page_url %}
 
-                    <!-- Pager-->
-                    {% if is_paginated %}
-                        {% if page_obj.has_previous %}
-                            <div class="d-flex justify-content-end mb-4" pager-button><a class="btn btn-primary text-uppercase ml-3 href" href="{% url 'blog:category' category.slug page_obj.previous_page_number %}">پست های جدید &rArr;</a></div>
+    {% url 'blog:category' category.slug page_obj.next_page_number %}
 
-                        {% endif %}
-
-                        {% if page_obj.has_next %}
-
-                            <div class="d-flex justify-content-end mb-4" pager-button><a class="btn btn-primary text-uppercase" href="{% url 'blog:category' category.slug page_obj.next_page_number %}">پست های قدیمی &lArr;</a></div>
-
-                        {% endif %}
-
-                    {% endif %}
-                </div>
-            </div>
-        </div>
 {% endblock %}
