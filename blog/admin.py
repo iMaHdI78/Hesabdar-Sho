@@ -56,6 +56,7 @@ class ArticleAdmin(admin.ModelAdmin):
 		'title',
 		'thumbnail_tag',
 		'slug',
+		'author',
 		'jpublish',
 		'status',
 		'category_to_str',
@@ -65,6 +66,7 @@ class ArticleAdmin(admin.ModelAdmin):
 	list_filter = (
 		'publish',
 		'status',
+		'author',
 		
 	)
 
