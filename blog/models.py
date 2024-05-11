@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 from django.utils.html import format_html
 from django.utils import timezone
@@ -59,6 +60,11 @@ class Article(models.Model):
 	#اگر بخوایم یه کلاس بهمون برگرده
 	def __str__(self):
 		return self.title
+	#برای نمایش مقاله در پنل ادمین ال تی ای
+	def get_absolute_url(self):
+		return reverse("account:home")
+
+     
 	
 	def jpublish(self):
 		return jalali_converter(self.publish)
