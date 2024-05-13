@@ -1,31 +1,33 @@
-from django.views.generic import ListView
-from django.views.generic.detail import DetailView
+from django.views.generic import ListView, DetailView
 from account.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-#from django.http import HttpResponse, Http404
+from account.mixins import AuthorAccessMixin
+# from django.http import HttpResponse, JsonResponse, Http404
 from .models import Article, Category
 
-#Use list view
+# Create your views here.
 class ArticleList(ListView):
 	queryset = Article.objects.published()
-	paginate_by = 3
+	paginate_by = 5
 
 
-#Use Detail view
 class ArticleDetail(DetailView):
-	model = Article
-	def get_ibject(self):
-		slug = self.kwargs.get('slug')       
+	def get_object(self):
+		slug = self.kwargs.get('slug')
 		return get_object_or_404(Article.objects.published(), slug=slug)
 
-		
-#Use category view
+
+class ArticlePreview(AuthorAccessMixin, DetailView):
+	def get_object(self):
+		pk = self.kwargs.get('pk')
+		return get_object_or_404(Article, pk=pk)
+
+
 class CategoryList(ListView):
-	paginate_by = 3
+	paginate_by = 5
 	template_name = 'blog/category_list.html'
- 
-	
+
 	def get_queryset(self):
 		global category
 		slug = self.kwargs.get('slug')
@@ -37,7 +39,7 @@ class CategoryList(ListView):
 		context['category'] = category
 		return context
 
-#Use category view
+
 class AuthorList(ListView):
 	paginate_by = 5
 	template_name = 'blog/author_list.html'
