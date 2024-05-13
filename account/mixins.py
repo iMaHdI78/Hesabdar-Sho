@@ -13,6 +13,7 @@ class FieldsMixin():
                 "description", 
                 "thumbnail", 
                 "publish", 
+                "is_special",
                 "status"
 			]
    
@@ -23,6 +24,7 @@ class FieldsMixin():
                 "category",
                 "description", 
                 "thumbnail", 
+                "is_special",
                 "publish"
 			]
    

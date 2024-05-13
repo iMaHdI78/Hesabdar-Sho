@@ -58,6 +58,7 @@ class ArticleAdmin(admin.ModelAdmin):
 		'slug',
 		'author',
 		'jpublish',
+		'is_special',
 		'status',
 		'category_to_str',
 		
