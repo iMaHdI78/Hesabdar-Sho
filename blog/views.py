@@ -1,6 +1,6 @@
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
-from django.contrib.auth.models import User
+from account.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 #from django.http import HttpResponse, Http404
