@@ -49,6 +49,9 @@ class Article(models.Model):
 	category = models.ManyToManyField(Category,verbose_name = 'دسته بندی', related_name= 'articles' )
 	description = models.TextField(verbose_name = 'محتوا')
 	thumbnail = models.ImageField(upload_to="images" , verbose_name = 'تصویر مقاله')
+	# video = models.FileField(upload_to="videos", null=True, blank=True, verbose_name='فیلم مقاله')
+	# audio = models.FileField(upload_to="audios", null=True, blank=True, verbose_name='ویس مقاله')
+	# file = models.FileField(upload_to="files", null=True, blank=True, verbose_name='فایل مقاله')
 	publish = models.DateTimeField(default=timezone.now , verbose_name = 'زمان انتشار')
 	created = models.DateTimeField(auto_now_add = True) #برای زمانی که مقاله کی ایجاد شده چه منتشر شود چه نشود
 	updated = models.DateTimeField(auto_now = True)#این برای زمانی هستش که نمایش می دهد کی ملاقه عوض شده
@@ -67,7 +70,7 @@ class Article(models.Model):
 	def get_absolute_url(self):
 		return reverse("account:home")
 
-     
+	 
 	
 	def jpublish(self):
 		return jalali_converter(self.publish)
