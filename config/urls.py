@@ -23,10 +23,10 @@ urlpatterns = [
     path('', include('django.contrib.auth.urls')),
     path('login/', Login.as_view(), name='login'),
     path('register/', Register.as_view(), name='register'),
-    # path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', activate, name='activate'),
-    path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,12}-[0-9A-Za-z]{1,20})/', activate, name='activate'),
+    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', activate, name='activate'),
     path('account/', include('account.urls')),
     path('admin/', admin.site.urls),
+    path('comment/', include('comment.urls')),
 ]
 
 from django.conf import settings
