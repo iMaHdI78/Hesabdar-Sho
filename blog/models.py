@@ -21,6 +21,11 @@ class CategoryManager(models.Manager):
 
 # Create your models here.
 
+#برای شمارهش بازدید کاربرها
+class IPAddress(models.Model):
+	ip_address = models.GenericIPAddressField(verbose_name="آدرس آی‌پی")
+
+
 class Category(models.Model):
 	parent = models.ForeignKey('self', default=None, null=True, blank=True, on_delete=models.SET_NULL, related_name='children', verbose_name="زیر دسته")
 	title = models.CharField(max_length = 200 , verbose_name = 'عنوان دسته بندی')
@@ -62,6 +67,8 @@ class Article(models.Model):
 	is_special = models.BooleanField(default=False , verbose_name='مقاله ی ویژه')
 	status = models.CharField(max_length=1,choices=STATUS_CHOICES , verbose_name = 'وضعیت')
 	comments = GenericRelation(Comment)
+	hits = models.ManyToManyField(IPAddress, blank=True, related_name="hits", verbose_name="بازدید ها")
+ 
 	
 	class Meta:
 		verbose_name = 'مقاله'
